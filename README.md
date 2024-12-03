@@ -64,3 +64,14 @@ The primary license for Uniswap V3 Core is the Business Source License 1.1 (`BUS
 
 - `contracts/libraries/FullMath.sol` is licensed under `MIT` (as indicated in its SPDX header), see [`contracts/libraries/LICENSE_MIT`](contracts/libraries/LICENSE_MIT)
 - All files in `contracts/test` remain unlicensed (as indicated in their SPDX headers).
+
+## Ignition Deployment and Verification
+
+Make sure the deployer private key is configured.
+
+```shell
+# to deploy to a network
+npx hardhat ignition deploy ignition/modules/UniswapV3Core.ts --network <network-name>
+
+# use the --verify flag to also verify the deployment
+```

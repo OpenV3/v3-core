@@ -1,7 +1,9 @@
-import 'hardhat-typechain'
-import '@nomiclabs/hardhat-ethers'
-import '@nomiclabs/hardhat-waffle'
-import '@nomiclabs/hardhat-etherscan'
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox";
+import * as dotenv from "dotenv";
+import { network } from "hardhat";
+
+dotenv.config();
 
 export default {
   networks: {
@@ -44,11 +46,27 @@ export default {
     bnb: {
       url: `https://bsc-dataseed.binance.org/`,
     },
+    "ink-sepolia": {
+      url: `https://rpc-gel-sepolia.inkonchain.com`,
+      accounts: [process.env.PK]
+    },
   },
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      'ink-sepolia': ''
+    },
+    customChains: [
+      {
+        network: "ink-sepolia",
+        chainId: 763373,
+        urls:{
+            apiURL: "https://explorer-sepolia.inkonchain.com/api",
+            browserURL: "https://sepolia.inkonscan.xyz/",
+        },
+      }
+    ]
   },
   solidity: {
     version: '0.7.6',
